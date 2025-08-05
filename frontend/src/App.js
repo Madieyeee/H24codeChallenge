@@ -22,6 +22,7 @@ function App() {
         pauseOnHover
       />
       <h1>SnipZone</h1>
+      <p className="app-subtitle">Le code qui vous manque, à portée de main.</p>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/edit/:id" element={<EditSnippetPage />} />

@@ -1,98 +1,194 @@
+/* Carte de formulaire avec effet glassmorphism */
 .form-card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 600px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet de lueur subtile sur hover */
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    transparent,
+    var(--accent-secondary)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.form-card:hover::before {
+  opacity: 0.6;
 }
 
 .form-card h2 {
   margin-top: 0;
-  margin-bottom: 20px;
-  color: #2c3e50;
+  margin-bottom: 30px;
+  color: var(--text-primary);
   text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  position: relative;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 600;
-  color: #34495e;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #dce4e8;
-  border-radius: 5px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
+  font-size: 15px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
   box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
 }
 
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Boutons modernes avec gradients */
 .form-card button {
   width: 100%;
-  padding: 12px;
-  background-color: #3498db;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-card button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
 .form-card button:hover {
-  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.form-card button:hover::before {
+  left: 100%;
+}
+
+.form-card button:active {
+  transform: translateY(0);
 }
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 .form-actions button {
-  width: auto; /* Override full width */
+  width: auto;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-family: 'Poppins', sans-serif;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .form-actions .submit-btn {
-  background-color: #2ecc71; /* Vert */
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
 }
 
 .form-actions .submit-btn:hover {
-  background-color: #27ae60;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
 }
 
 .form-actions .cancel-btn {
-  background-color: #95a5a6; /* Gris */
-  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-actions .cancel-btn:hover {
-  background-color: #7f8c8d;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }

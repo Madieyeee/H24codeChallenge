@@ -1,30 +1,76 @@
 .category-filter {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0 60px 0;
+  padding: 0 20px;
 }
 
 .category-filter button {
-  background: #fff;
-  border: 1px solid #ddd;
-  color: #555;
-  padding: 8px 16px;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  padding: 12px 24px;
+  border-radius: 25px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
-  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.category-filter button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
 .category-filter button:hover {
-  background-color: #f7f7f7;
-  border-color: #ccc;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.category-filter button:hover::before {
+  left: 100%;
 }
 
 .category-filter button.active {
-  background-color: #3498db;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white;
-  border-color: #3498db;
+  border-color: var(--accent-primary);
   font-weight: 600;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-glow);
+}
+
+.category-filter button.active::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+}
+
+.category-filter button:active {
+  transform: translateY(0);
 }

@@ -1,11 +1,57 @@
 .App {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
+/* En-tête spectaculaire */
 .App h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 40px;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--accent-primary) 50%,
+    var(--accent-tertiary) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 60px 0 20px 0;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+/* Effet de lueur subtile sur le titre */
+.App h1::after {
+  content: 'SnipZone';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Sous-titre élégant */
+.app-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 60px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
