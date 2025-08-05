@@ -86,3 +86,35 @@
 .pagination-container button:active:not(:disabled) {
   transform: translateY(0);
 }
+
+/* ===== RESPONSIVITÉ MOBILE ===== */
+
+/* Tablettes et petits écrans */
+@media (max-width: 768px) {
+  .pagination-container {
+    margin: 40px 0 30px 0;
+    gap: 6px;
+  }
+  
+  .pagination-container button {
+    padding: 10px 12px;
+    font-size: 13px;
+    min-width: 40px;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+  .pagination-container {
+    margin: 30px 0 20px 0;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination-container button {
+    padding: 8px 10px;
+    font-size: 12px;
+    min-width: 36px;
+    border-radius: 8px;
+  }
+}
