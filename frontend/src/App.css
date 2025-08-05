@@ -1,19 +1,11 @@
 .App {
   max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px 20px 20px;
-  text-align: center;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  transition: background-color 0.3s, color 0.3s;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 .App h1 {
-  background-color: var(--header-background);
-  color: var(--header-text-color);
-  padding: 20px;
-  margin: 0 -20px 40px -20px;
-  font-weight: 600;
-  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 40px;
 }

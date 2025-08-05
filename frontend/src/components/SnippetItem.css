@@ -41,10 +41,17 @@
 
 .snippet-actions {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
   margin-top: 20px;
   border-top: 1px solid #f0f0f0;
   padding-top: 20px;
+}
+
+.main-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .snippet-actions button {
@@ -95,7 +102,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: auto; /* Pousse les autres boutons vers la droite */
 }
 
 .like-btn {

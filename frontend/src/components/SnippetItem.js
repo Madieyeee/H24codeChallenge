@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import './SnippetItem.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ShareButtons from './ShareButtons';
 
 const SnippetItem = ({ snippet, onDelete, onLike, isLiked }) => {
   const handleCopy = () => {
@@ -35,11 +36,16 @@ const SnippetItem = ({ snippet, onDelete, onLike, isLiked }) => {
           </button>
           <span>{snippet.likes || 0}</span>
         </div>
-        <button onClick={handleCopy} className="copy-btn">Copier le code</button>
-        <Link to={`/edit/${snippet.id}`}>
-          <button className="edit-btn">Modifier</button>
-        </Link>
-        <button onClick={() => onDelete(snippet.id)} className="delete-btn">Supprimer</button>
+
+        <div className="main-actions">
+          <button onClick={handleCopy} className="copy-btn">Copier le code</button>
+          <Link to={`/edit/${snippet.id}`}>
+            <button className="edit-btn">Modifier</button>
+          </Link>
+          <button onClick={() => onDelete(snippet.id)} className="delete-btn">Supprimer</button>
+        </div>
+
+        <ShareButtons snippet={snippet} />
       </div>
     </div>
   );
