@@ -1,0 +1,9 @@
+.category-filter {
+  margin-bottom: 20px;
+}
+
+.category-filter button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
