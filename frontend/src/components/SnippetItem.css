@@ -7,9 +7,19 @@
   position: relative;
 }
 
+.snippet-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .snippet-item h3 {
   margin-top: 0;
-  color: #2c3e50;
+  color: #34495e;
+  transition: color 0.3s ease;
+}
+
+.snippet-item h3:hover {
+  color: #3498db;
 }
 
 .snippet-item .snippet-category {
@@ -29,22 +39,50 @@
   margin-bottom: 20px;
 }
 
-.snippet-item button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #7f8c8d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.3s ease;
+.snippet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
 }
 
-.snippet-item button:hover {
-  background: #6c7a7b;
+.snippet-actions button {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.snippet-actions .copy-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.snippet-actions .copy-btn:hover {
+  background-color: #2980b9;
+}
+
+.snippet-actions .edit-btn {
+  background-color: #f39c12;
+  color: white;
+}
+
+.snippet-actions .edit-btn:hover {
+  background-color: #e67e22;
+}
+
+.snippet-actions .delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.snippet-actions .delete-btn:hover {
+  background-color: #c0392b;
 }
 
 .snippet-item pre {

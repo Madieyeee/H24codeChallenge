@@ -1,0 +1,64 @@
+.snippet-detail-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.snippet-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ecf0f1;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.snippet-detail-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+.snippet-category-tag {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+}
+
+.snippet-category-tag.php { background-color: #777BB4; }
+.snippet-category-tag.html { background-color: #E34F26; }
+.snippet-category-tag.css { background-color: #1572B6; }
+
+.snippet-description {
+  color: #7f8c8d;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.snippet-detail-card .snippet-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+}
+
+.snippet-detail-card .snippet-actions div {
+    display: flex;
+    gap: 10px;
+}
+
+.snippet-detail-card .back-btn {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.snippet-detail-card .back-btn:hover {
+    background-color: #7f8c8d;
+}

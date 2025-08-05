@@ -18,6 +18,11 @@ class SnippetController extends Controller
         return $query->latest()->get();
     }
 
+    public function show(Snippet $snippet)
+    {
+        return $snippet;
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -30,5 +35,26 @@ class SnippetController extends Controller
         $snippet = Snippet::create($validated);
 
         return response()->json($snippet, 201);
+    }
+
+    public function update(Request $request, Snippet $snippet)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => 'required|string|in:PHP,HTML,CSS',
+            'code' => 'required|string',
+        ]);
+
+        $snippet->update($validated);
+
+        return response()->json($snippet);
+    }
+
+    public function destroy(Snippet $snippet)
+    {
+        $snippet->delete();
+
+        return response()->json(null, 204);
     }
 }
