@@ -6,10 +6,12 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import EditSnippetPage from './pages/EditSnippetPage';
 import SnippetDetailPage from './pages/SnippetDetailPage';
+import ThemeToggleButton from './components/ThemeToggleButton';
 
 function App() {
   return (
     <div className="App">
+      <ThemeToggleButton />
       <ToastContainer
         position="top-right"
         autoClose={5000}

@@ -90,3 +90,32 @@
   overflow: hidden;
   margin: 0;
 }
+
+.like-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto; /* Pousse les autres boutons vers la droite */
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+}
+
+.like-btn.liked {
+  color: #e74c3c; /* Rouge pour le cœur liké */
+}
+
+.like-section span {
+  font-weight: 600;
+  color: #34495e;
+}

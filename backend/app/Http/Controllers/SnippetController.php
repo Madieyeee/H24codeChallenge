@@ -54,7 +54,20 @@ class SnippetController extends Controller
     public function destroy(Snippet $snippet)
     {
         $snippet->delete();
+        return response()->noContent();
+    }
 
-        return response()->json(null, 204);
+    public function like(Snippet $snippet)
+    {
+        $snippet->increment('likes');
+        return $snippet;
+    }
+
+    public function unlike(Snippet $snippet)
+    {
+        if ($snippet->likes > 0) {
+            $snippet->decrement('likes');
+        }
+        return $snippet;
     }
 }

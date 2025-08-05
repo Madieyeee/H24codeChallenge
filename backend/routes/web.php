@@ -14,4 +14,6 @@ Route::prefix('api')->group(function () {
     Route::get('/snippets/{snippet}', [SnippetController::class, 'show']);
     Route::put('/snippets/{snippet}', [SnippetController::class, 'update']);
     Route::delete('/snippets/{snippet}', [SnippetController::class, 'destroy']);
+    Route::post('/snippets/{snippet}/like', [SnippetController::class, 'like']);
+    Route::post('/snippets/{snippet}/unlike', [SnippetController::class, 'unlike']);
 });

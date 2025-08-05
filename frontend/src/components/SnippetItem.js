@@ -5,7 +5,7 @@ import './SnippetItem.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const SnippetItem = ({ snippet, onDelete }) => {
+const SnippetItem = ({ snippet, onDelete, onLike, isLiked }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(snippet.code);
     toast.success('Code copié dans le presse-papiers !');
@@ -29,6 +29,12 @@ const SnippetItem = ({ snippet, onDelete }) => {
         {snippet.code}
       </SyntaxHighlighter>
       <div className="snippet-actions">
+        <div className="like-section">
+          <button onClick={() => onLike(snippet.id)} className={`like-btn ${isLiked ? 'liked' : ''}`}>
+            {isLiked ? '❤️' : '♡'}
+          </button>
+          <span>{snippet.likes || 0}</span>
+        </div>
         <button onClick={handleCopy} className="copy-btn">Copier le code</button>
         <Link to={`/edit/${snippet.id}`}>
           <button className="edit-btn">Modifier</button>

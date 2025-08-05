@@ -11,6 +11,14 @@ const HomePage = () => {
   const [snippets, setSnippets] = useState([]);
   const [paginationData, setPaginationData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [likedSnippets, setLikedSnippets] = useState(() => {
+    const saved = localStorage.getItem('likedSnippets');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('likedSnippets', JSON.stringify(likedSnippets));
+  }, [likedSnippets]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -39,6 +47,28 @@ const HomePage = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleLike = async (id) => {
+    const isLiked = likedSnippets.includes(id);
+    const endpoint = isLiked ? 'unlike' : 'like';
+
+    try {
+      const response = await axios.post(`/api/snippets/${id}/${endpoint}`);
+      const updatedSnippet = response.data;
+
+      setSnippets(snippets.map(snippet =>
+        snippet.id === id ? { ...snippet, likes: updatedSnippet.likes } : snippet
+      ));
+
+      if (isLiked) {
+        setLikedSnippets(likedSnippets.filter(likedId => likedId !== id));
+      } else {
+        setLikedSnippets([...likedSnippets, id]);
+      }
+    } catch (error) {
+      toast.error('Une erreur est survenue lors de l\'opération.');
+    }
   };
 
   const handleDeleteSnippet = async (id) => {
@@ -77,7 +107,7 @@ const HomePage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <SnippetList snippets={filteredSnippets} onDelete={handleDeleteSnippet} />
+      <SnippetList snippets={filteredSnippets} onDelete={handleDeleteSnippet} onLike={handleLike} likedSnippets={likedSnippets} />
       <Pagination paginationData={paginationData} onPageChange={handlePageChange} />
     </>
   );
