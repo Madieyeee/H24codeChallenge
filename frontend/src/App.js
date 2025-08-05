@@ -33,9 +33,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>ShareMyCode</h1>
+      <h1>SnipZone</h1>
       <SnippetForm onSnippetAdded={handleSnippetAdded} />
-      <CategoryFilter onSelectCategory={handleSelectCategory} />
+      <CategoryFilter onSelectCategory={handleSelectCategory} selectedCategory={selectedCategory} />
       <SnippetList snippets={snippets} />
     </div>
   );

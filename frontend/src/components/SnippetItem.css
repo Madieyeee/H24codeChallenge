@@ -1,39 +1,54 @@
 .snippet-item {
-  border: 1px solid #eee;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .snippet-item h3 {
   margin-top: 0;
+  color: #2c3e50;
 }
 
-.snippet-category {
-  font-style: italic;
+.snippet-item .snippet-category {
+  display: inline-block;
+  background-color: #eaf2f8;
+  color: #3498db;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.snippet-item p {
   color: #555;
-  font-size: 0.9em;
-  margin-bottom: 10px;
-}
-
-.snippet-item pre {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 3px;
-  white-space: pre-wrap; /* Ensures long lines wrap */
-  word-wrap: break-word; /* Breaks long words if necessary */
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .snippet-item button {
-  padding: 5px 10px;
-  background-color: #6c757d;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #7f8c8d;
   color: white;
   border: none;
-  border-radius: 3px;
+  padding: 8px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
 }
 
 .snippet-item button:hover {
-  background-color: #5a6268;
+  background: #6c7a7b;
+}
+
+.snippet-item pre {
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0;
 }

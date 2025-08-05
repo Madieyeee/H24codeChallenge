@@ -1,9 +1,30 @@
 .category-filter {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
 .category-filter button {
-  margin-right: 10px;
-  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #555;
+  padding: 8px 16px;
+  border-radius: 20px;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+
+.category-filter button:hover {
+  background-color: #f7f7f7;
+  border-color: #ccc;
+}
+
+.category-filter button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+  font-weight: 600;
 }

@@ -24,10 +24,10 @@ const SnippetForm = ({ onSnippetAdded }) => {
 
   return (
     <form onSubmit={handleSubmit} className="snippet-form">
-      <h2>Add a Code Snippet</h2>
+      <h2>Ajouter un Code Snippet</h2>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Titre"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
@@ -39,17 +39,21 @@ const SnippetForm = ({ onSnippetAdded }) => {
         required
       ></textarea>
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="" disabled>
+          Sélectionnez une catégorie
+        </option>
         <option value="PHP">PHP</option>
         <option value="HTML">HTML</option>
         <option value="CSS">CSS</option>
       </select>
       <textarea
-        placeholder="Enter your code here"
+        placeholder="Votre code ici..."
         value={code}
         onChange={(e) => setCode(e.target.value)}
         required
+        rows="10"
       ></textarea>
-      <button type="submit">Add Snippet</button>
+      <button type="submit">Ajouter le Snippet</button>
     </form>
   );
 };

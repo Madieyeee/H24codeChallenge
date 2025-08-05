@@ -1,5 +1,13 @@
 .App {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.App h1 {
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 40px;
 }
 
 .App-logo {

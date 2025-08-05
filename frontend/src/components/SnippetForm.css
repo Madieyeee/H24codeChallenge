@@ -1,30 +1,42 @@
 .snippet-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
+}
+
+.snippet-form h2 {
+  margin-top: 0;
   margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  text-align: center;
+  color: #34495e;
 }
 
 .snippet-form input,
 .snippet-form textarea,
 .snippet-form select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 15px;
+  background-color: #fdfdfd;
 }
 
 .snippet-form button {
-  padding: 10px 15px;
-  background-color: #007bff;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 3px;
+  padding: 12px 15px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 .snippet-form button:hover {
-  background-color: #0056b3;
+  background-color: #2980b9;
 }
