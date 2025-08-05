@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import '../styles/Form.css';
 
@@ -11,11 +12,12 @@ const SnippetForm = ({ onSnippetAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !description || !code) {
-      alert('Veuillez remplir tous les champs.');
+      toast.error('Veuillez remplir tous les champs.');
       return;
     }
     try {
       const response = await axios.post('/api/snippets', { title, description, category, code });
+      toast.success('Snippet ajouté avec succès !');
       onSnippetAdded(response.data);
       setTitle('');
       setDescription('');
@@ -23,6 +25,7 @@ const SnippetForm = ({ onSnippetAdded }) => {
       setCode('');
     } catch (error) {
       console.error('Error adding snippet!', error);
+      toast.error('Erreur lors de l\'ajout du snippet.');
     }
   };
 
@@ -54,6 +57,8 @@ const SnippetForm = ({ onSnippetAdded }) => {
           <label>Catégorie</label>
           <select value={category} onChange={(e) => setCategory(e.target.value)} required>
             <option value="PHP">PHP</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
             <option value="HTML">HTML</option>
             <option value="CSS">CSS</option>
           </select>

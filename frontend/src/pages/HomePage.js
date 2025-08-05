@@ -3,53 +3,82 @@ import axios from 'axios';
 import SnippetForm from '../components/SnippetForm';
 import SnippetList from '../components/SnippetList';
 import CategoryFilter from '../components/CategoryFilter';
+import Pagination from '../components/Pagination';
+import { toast } from 'react-toastify';
+import '../styles/HomePage.css';
 
 const HomePage = () => {
   const [snippets, setSnippets] = useState([]);
+  const [paginationData, setPaginationData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchSnippets = async () => {
       try {
-        const url = selectedCategory === 'All' ? '/api/snippets' : `/api/snippets?category=${selectedCategory}`;
-        const response = await axios.get(url);
-        setSnippets(response.data);
+        const params = { page: currentPage };
+        if (selectedCategory !== 'All') {
+          params.category = selectedCategory;
+        }
+        const response = await axios.get('/api/snippets', { params });
+        setSnippets(response.data.data);
+        setPaginationData(response.data);
       } catch (error) {
-        console.error('Error fetching snippets!', error);
+        toast.error('Erreur lors du chargement des snippets.');
       }
     };
 
     fetchSnippets();
-  }, [selectedCategory]);
+  }, [selectedCategory, currentPage]);
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when category changes
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   const handleDeleteSnippet = async (id) => {
     try {
       await axios.delete(`/api/snippets/${id}`);
       setSnippets(snippets.filter(snippet => snippet.id !== id));
+      toast.success('Snippet supprimé avec succès !');
     } catch (error) {
-      console.error('Error deleting snippet!', error);
+      toast.error('Erreur lors de la suppression du snippet.');
     }
   };
 
   const handleSnippetAdded = (newSnippet) => {
-    // If the new snippet matches the current filter, add it to the list
     if (selectedCategory === 'All' || selectedCategory === newSnippet.category) {
         setSnippets([newSnippet, ...snippets]);
     } else {
-        // Optionally, switch to the new snippet's category
         setSelectedCategory(newSnippet.category);
     }
   };
 
+  const filteredSnippets = snippets.filter(snippet =>
+    (snippet.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (snippet.description && snippet.description.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
   return (
     <>
       <SnippetForm onSnippetAdded={handleSnippetAdded} />
-      <CategoryFilter onSelectCategory={handleSelectCategory} selectedCategory={selectedCategory} />
-      <SnippetList snippets={snippets} onDelete={handleDeleteSnippet} />
+      <div className="filters-container">
+        <CategoryFilter onSelectCategory={handleSelectCategory} selectedCategory={selectedCategory} />
+        <input
+          type="text"
+          placeholder="Rechercher par titre ou description..."
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <SnippetList snippets={filteredSnippets} onDelete={handleDeleteSnippet} />
+      <Pagination paginationData={paginationData} onPageChange={handlePageChange} />
     </>
   );
 };

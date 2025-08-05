@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './SnippetItem.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -7,7 +8,7 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 const SnippetItem = ({ snippet, onDelete }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(snippet.code);
-    alert('Code copié dans le presse-papiers !');
+    toast.success('Code copié dans le presse-papiers !');
   };
 
   const languageMap = {
@@ -19,7 +20,7 @@ const SnippetItem = ({ snippet, onDelete }) => {
 
   return (
     <div className="snippet-item">
-      <Link to={`/snippet/${snippet.id}`} className="snippet-title-link">
+      <Link to={`/snippets/${snippet.id}`} className="snippet-title-link">
         <h3>{snippet.title}</h3>
       </Link>
       <p className="snippet-category">{snippet.category}</p>
@@ -29,7 +30,7 @@ const SnippetItem = ({ snippet, onDelete }) => {
       </SyntaxHighlighter>
       <div className="snippet-actions">
         <button onClick={handleCopy} className="copy-btn">Copier le code</button>
-        <Link to={`/snippet/${snippet.id}/edit`}>
+        <Link to={`/edit/${snippet.id}`}>
           <button className="edit-btn">Modifier</button>
         </Link>
         <button onClick={() => onDelete(snippet.id)} className="delete-btn">Supprimer</button>

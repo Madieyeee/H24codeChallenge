@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '../styles/Form.css';
 
 const EditSnippetPage = () => {
@@ -29,9 +30,10 @@ const EditSnippetPage = () => {
     e.preventDefault();
     try {
       await axios.put(`/api/snippets/${id}`, snippet);
+      toast.success('Snippet mis à jour avec succès !');
       navigate('/'); // Redirect to homepage after successful update
     } catch (error) {
-      console.error('Error updating snippet!', error);
+      toast.error('Erreur lors de la mise à jour du snippet.');
     }
   };
 
@@ -65,6 +67,8 @@ const EditSnippetPage = () => {
           <label>Catégorie</label>
           <select name="category" value={snippet.category} onChange={handleChange}>
             <option value="PHP">PHP</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
             <option value="HTML">HTML</option>
             <option value="CSS">CSS</option>
           </select>

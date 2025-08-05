@@ -15,7 +15,7 @@ class SnippetController extends Controller
             $query->where('category', $request->category);
         }
 
-        return $query->latest()->get();
+        return $query->latest()->paginate(5);
     }
 
     public function show(Snippet $snippet)

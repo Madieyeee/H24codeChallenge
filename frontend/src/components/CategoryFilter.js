@@ -2,7 +2,7 @@ import React from 'react';
 import './CategoryFilter.css';
 
 const CategoryFilter = ({ onSelectCategory, selectedCategory }) => {
-  const categories = ['Tous', 'PHP', 'HTML', 'CSS'];
+  const categories = ['Tous', 'PHP', 'JavaScript', 'Python', 'HTML', 'CSS'];
 
   return (
     <div className="category-filter">
