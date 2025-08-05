@@ -8,7 +8,7 @@ const SnippetForm = ({ onSnippetAdded }) => {
   const [category, setCategory] = useState('PHP');
   const [code, setCode] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/snippets', { title, description, category, code });
