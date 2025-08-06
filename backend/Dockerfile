@@ -1,63 +1,46 @@
-# Dockerfile pour une application Laravel sur Render
+# Dockerfile final pour Laravel sur Render (approche mono-étape)
+FROM php:8.2-fpm-alpine
 
-# Étape 1: Base PHP et dépendances
-FROM php:8.2-fpm as builder
-
-# Arguments pour l'utilisateur non-root
-ARG UID=1000
-ARG GID=1000
-
-# Dépendances système
-RUN apt-get update && apt-get install -y \
+# Installation des dépendances système (Nginx, Supervisor, etc.)
+# On ajoute aussi shadow pour la gestion des utilisateurs si besoin, et bash pour le debug
+RUN apk update && apk add --no-cache \
+    nginx \
+    supervisor \
+    bash \
     git \
     curl \
+    libzip-dev \
     libpng-dev \
-    libonig-dev \
     libxml2-dev \
     zip \
-    unzip \
-    supervisor
+    unzip
 
-# Extensions PHP
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Installation des extensions PHP
+RUN docker-php-ext-install pdo pdo_mysql zip gd bcmath exif pcntl
 
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Répertoire de travail
+# Définir le répertoire de travail
 WORKDIR /var/www
 
-# Copie des dépendances Composer
-COPY composer.json composer.lock ./
-
-# Installation des dépendances (production)
-RUN composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
-
-# Copie du reste de l'application
+# Copier les fichiers de l'application
 COPY . .
 
-# Permissions
-RUN chown -R www-data:www-data /var/www
+# Installer les dépendances Composer
+# On le fait après avoir copié les fichiers pour profiter du cache Docker
+RUN composer install --no-dev --optimize-autoloader
 
-# Étape 2: Image finale avec Nginx
-FROM nginx:alpine
-
-# Copie des fichiers de l'application depuis l'étape de build
-COPY --from=builder /var/www /var/www
-
-# Copie de la configuration Nginx et Supervisor
-COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
+# Copier les configurations Nginx et Supervisor
+COPY .docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Créer l'utilisateur et le groupe www-data
-RUN addgroup -S www-data && adduser -S -G www-data www-data
-
-# Permissions pour le stockage et le cache
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
-    chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+# Définir les permissions
+# L'utilisateur www-data existe déjà dans cette image de base
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Exposer le port 80
 EXPOSE 80
 
-# Commande de démarrage
+# Lancer Supervisor pour gérer Nginx et PHP-FPM
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
