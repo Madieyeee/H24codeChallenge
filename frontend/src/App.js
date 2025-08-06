@@ -6,6 +6,7 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import EditSnippetPage from './pages/EditSnippetPage';
 import SnippetDetailPage from './pages/SnippetDetailPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/edit/:id" element={<EditSnippetPage />} />
         <Route path="/snippets/:id" element={<SnippetDetailPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
