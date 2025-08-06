@@ -49,6 +49,10 @@ COPY --from=builder /var/www /var/www
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Créer l'utilisateur et le groupe www-data
+RUN addgroup -g 1000 -S www-data && \
+    adduser -u 1000 -S www-data -G www-data
+
 # Permissions pour le stockage et le cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
     chmod -R 775 /var/www/storage /var/www/bootstrap/cache
