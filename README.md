@@ -109,47 +109,6 @@ SnipZone/
 └── 📄 README.md
 ```
 
-## 🎨 Design System
-
-### **Palette de Couleurs**
-- **Primaire** : `#6366f1` (Indigo vibrant)
-- **Secondaire** : `#8b5cf6` (Violet élégant)
-- **Accent** : `#06b6d4` (Cyan moderne)
-- **Fond** : `#0f0f0f` (Noir profond)
-- **Texte** : `#f8f9fa` (Blanc pur)
-
-### **Effets Visuels**
-- **Glassmorphism** - `backdrop-filter: blur(16px)`
-- **Gradient animé** - Animation de 15s en boucle
-- **Ombres dynamiques** - Effets de profondeur au survol
-- **Transitions fluides** - `cubic-bezier(0.4, 0, 0.2, 1)`
-
-## 📱 Responsive Design
-
-- **📱 Mobile** : ≤ 480px - Layout vertical optimisé
-- **📟 Tablette** : ≤ 768px - Interface intermédiaire
-- **💻 Desktop** : > 768px - Expérience complète
-
-## 🔧 API Endpoints
-
-| Méthode | Endpoint | Description |
-|---------|----------|-------------|
-| `GET` | `/api/snippets` | Liste des snippets avec pagination |
-| `POST` | `/api/snippets` | Créer un nouveau snippet |
-| `GET` | `/api/snippets/{id}` | Détails d'un snippet |
-| `PUT` | `/api/snippets/{id}` | Modifier un snippet |
-| `DELETE` | `/api/snippets/{id}` | Supprimer un snippet |
-| `POST` | `/api/snippets/{id}/like` | Liker un snippet |
-
-## 🎯 Fonctionnalités Futures
-
-- [ ] 🔐 Système d'authentification utilisateur
-- [ ] 🏷️ Système de tags avancé
-- [ ] 💬 Commentaires sur les snippets
-- [ ] 🍴 Fork de snippets
-- [ ] 📊 Statistiques et analytics
-- [ ] 🌍 Support multilingue
-
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues ! N'hésitez pas à :
@@ -162,8 +121,7 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
-
+Ce projet est sous licence MIT.
 ## 👨‍💻 Développeur
 
 **Développé par [Madieyeee](https://github.com/Madieyeee)**
