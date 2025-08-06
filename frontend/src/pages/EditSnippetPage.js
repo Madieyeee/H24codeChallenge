@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axiosConfig';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import '../styles/Form.css';
@@ -12,7 +12,7 @@ const EditSnippetPage = () => {
   useEffect(() => {
     const fetchSnippet = async () => {
       try {
-        const response = await axios.get(`/api/snippets/${id}`);
+                const response = await axios.get(`/snippets/${id}`);
         setSnippet(response.data);
       } catch (error) {
         console.error('Error fetching snippet!', error);
@@ -29,7 +29,7 @@ const EditSnippetPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/snippets/${id}`, snippet);
+          await axios.put(`/snippets/${id}`, snippet);
       toast.success('Snippet mis à jour avec succès !');
       navigate('/'); // Redirect to homepage after successful update
     } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axiosConfig';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -13,7 +13,7 @@ const SnippetDetailPage = () => {
   useEffect(() => {
     const fetchSnippet = async () => {
       try {
-        const response = await axios.get(`/api/snippets/${id}`);
+                const response = await axios.get(`/snippets/${id}`);
         setSnippet(response.data);
       } catch (error) {
         console.error('Error fetching snippet!', error);

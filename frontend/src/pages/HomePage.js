@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axiosConfig';
 import SnippetForm from '../components/SnippetForm';
 import SnippetList from '../components/SnippetList';
 import CategoryFilter from '../components/CategoryFilter';
@@ -29,7 +29,7 @@ const HomePage = () => {
         if (selectedCategory !== 'All') {
           params.category = selectedCategory;
         }
-        const response = await axios.get('/api/snippets', { params });
+            const response = await axios.get('/snippets', { params });
         setSnippets(response.data.data);
         setPaginationData(response.data);
       } catch (error) {
@@ -54,7 +54,7 @@ const HomePage = () => {
     const endpoint = isLiked ? 'unlike' : 'like';
 
     try {
-      const response = await axios.post(`/api/snippets/${id}/${endpoint}`);
+      const response = await axios.post(`/snippets/${id}/${endpoint}`);
       const updatedSnippet = response.data;
 
       setSnippets(snippets.map(snippet =>
@@ -73,7 +73,7 @@ const HomePage = () => {
 
   const handleDeleteSnippet = async (id) => {
     try {
-      await axios.delete(`/api/snippets/${id}`);
+          await axios.delete(`/snippets/${id}`);
       setSnippets(snippets.filter(snippet => snippet.id !== id));
       toast.success('Snippet supprimé avec succès !');
     } catch (error) {
