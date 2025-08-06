@@ -50,8 +50,7 @@ COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Créer l'utilisateur et le groupe www-data
-RUN addgroup -g 1000 -S www-data && \
-    adduser -u 1000 -S www-data -G www-data
+RUN addgroup -S www-data && adduser -S -G www-data www-data
 
 # Permissions pour le stockage et le cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
