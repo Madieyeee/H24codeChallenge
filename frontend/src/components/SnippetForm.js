@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import axiosInstance from '../api/axiosConfig';
 import '../styles/Form.css';
 
 const SnippetForm = ({ onSnippetAdded }) => {
@@ -16,7 +16,7 @@ const SnippetForm = ({ onSnippetAdded }) => {
       return;
     }
     try {
-      const response = await axios.post('/api/snippets', { title, description, category, code });
+      const response = await axiosInstance.post('/snippets', { title, description, category, code });
       toast.success('Snippet ajouté avec succès !');
       onSnippetAdded(response.data);
       setTitle('');
