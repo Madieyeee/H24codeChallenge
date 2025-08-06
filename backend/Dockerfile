@@ -40,8 +40,11 @@ COPY .docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 # L'utilisateur www-data existe déjà dans cette image de base
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Rendre notre script de démarrage exécutable
+RUN chmod +x ./render-start.sh
+
 # Exposer le port 80
 EXPOSE 80
 
-# Lancer Supervisor pour gérer Nginx et PHP-FPM
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Définir le script de démarrage comme commande d'entrée
+CMD ["./render-start.sh"]
