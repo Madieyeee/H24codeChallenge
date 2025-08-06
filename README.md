@@ -122,11 +122,6 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 ## 📄 Licence
 
 Ce projet est sous licence MIT.
-## 👨‍💻 Développeur
-
-**Développé par [Madieyeee](https://github.com/Madieyeee)**
-
-Passionné de développement web, spécialisé dans les technologies React et Laravel. Toujours à la recherche de nouveaux défis et d'innovations techniques.
 
 ---
 
