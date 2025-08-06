@@ -31,9 +31,10 @@ COPY . .
 # On le fait après avoir copié les fichiers pour profiter du cache Docker
 RUN composer install --no-dev --optimize-autoloader
 
-# Copier les configurations Nginx et Supervisor
+# Copier les configurations Nginx, Supervisor et PHP-FPM
 COPY .docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY .docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 
 # Définir les permissions
 # L'utilisateur www-data existe déjà dans cette image de base
