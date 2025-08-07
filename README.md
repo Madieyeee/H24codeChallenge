@@ -2,7 +2,7 @@
 
 > **Le code qui vous manque, à portée de main.**
 
-SnipZone est une plateforme moderne et élégante de partage d'extraits de code, développée avec React et Laravel. Conçue pour les développeurs qui souhaitent découvrir, partager et organiser facilement leurs snippets de code favoris.
+Conçue pour les développeurs qui souhaitent découvrir, partager et organiser facilement leurs snippets de code favoris.
 
 ![SnipZone Screenshot](SnipZone.png)
 
